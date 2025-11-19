@@ -54,7 +54,7 @@ just a few lines ago, i mentioned _C-labels_. here's the guide to them:
 
 c-labels are a way to define constants in code. this console doesn't really support any kind of retreiving values directly from ROM, so there is no kind of encoding metadata. there is a way to define constants in _SimpleASM_ though. those constants are _c-labels_. to define a c-label, you do this:
 ```asm
-CLABEL R0
+CLABEL R0 XReg
 ```
 ### basic operations
 with the basics covered, here are some essential operations:
@@ -116,5 +116,6 @@ pyinstaller finalCompile.py --onefile
 ```
 
 that's literally all there is to building this into an exe. you could also run finalCompile.py directly, providing you have numpy installed
+
 
 
