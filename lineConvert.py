@@ -1,16 +1,14 @@
-import numpy as np
+import numpy as np #numpy is used to convert unusable float strings into usable hexadecimal. and to make sure that the values specified are 16-bit.
 import classes
 import rawOps
 validDigits = [str(x) for x in range(1,9)]
 ALUopNames = [item[0] for item in rawOps.ALUOPRaw]
 BLUopNames = [item[0] for item in rawOps.BLUOPRaw]
 
-def floatToHex(value: float) -> str:
-    f16 = np.float16(value)
-    bits = f16.view(np.uint16)
-    return f"{bits:04X}"
+def floatToHex(value: float) -> str: #this was added quite early in development. long before i uploaded this to github
+    return f"{np.float16(value).view(np.uint16):04X}"
 
-def ParamConvert(param:str,clabels:dict={}):
+def ParamConvert(param:str,clabels:dict={}): #this turns the many types of parameters that simpleASM provides into the two the console is familiar with.
     constant = True
     trimmed = param[1:].upper()
     if param[0] == "U":
@@ -35,7 +33,7 @@ def ParamConvert(param:str,clabels:dict={}):
     elif param[0] == "L":
         try:
             number = f"{np.uint16(clabels[param[1:]]):04X}"
-        except:
+        except indexError:
             print(f"error: most likely, the c-label, {param[1:]}, does not exist.")
             input("press any key to exit...")
             exit()
@@ -45,8 +43,8 @@ def ParamConvert(param:str,clabels:dict={}):
         exit()
     return [number,constant]
 
-def LineConvert(line:str,jmpLocations:dict,clabels:dict) -> classes.line:
-    split = line.split(" ")
+def LineConvert(line:str,jmpLocations:dict,clabels:dict) -> classes.line: #converts lines to the line class, which is then proccessed into more usuable numbers, which is then put into a usable format.
+    split = line.split(" ") #this line is why 'MOV R1 R0 comment' is valid.
     if split[0].upper() in ALUopNames:
         IsBLU = False
         index = ALUopNames.index(split[0].upper())
@@ -63,23 +61,20 @@ def LineConvert(line:str,jmpLocations:dict,clabels:dict) -> classes.line:
         paramNum = rawOps.BLUOPRaw[index][1]
     P1:list = ["0000",True]
     P2:list = P1
-    destIndex = 3
-    if paramNum == 0:
+    if paramNum == 0: #i think i could've made this a bit better
         P1 = ["0000",True]
         P2 = ["0000",True]
-        destIndex = 1
     elif paramNum == 1:
         P1 = ParamConvert(split[1],clabels)
         P2 = ["0000",True]
-        destIndex = 2
     elif paramNum == 2:
         P1 = ParamConvert(split[1],clabels)
         P2 = ParamConvert(split[2],clabels)
-        destIndex = 3
     else:
         print(f"error: the instruction {split[0]} does not have a valid amount of operands. {paramNum} operands. (excluding destination operand, if it's there) this an issue on the assembler side.")
         input("press any key to exit...")
         exit()
+    destIndex = paramNum + 1
     if not IsBLU:
         try:
             if split[destIndex][0] != "R" and not split[destIndex][0] in validDigits:
@@ -93,7 +88,7 @@ def LineConvert(line:str,jmpLocations:dict,clabels:dict) -> classes.line:
                 else:
                     dest = f"{np.uint8(split[destIndex]):04X}"
         except IndexError:
-            print("error: attempted to access a non-existent character in destination part")
+            print("error: attempted to access a non-existent character in destination part") #i could probably word this a bit better
             print(f"line at fault: {line}")
             input("press any key to exit...")
             exit()
@@ -102,4 +97,5 @@ def LineConvert(line:str,jmpLocations:dict,clabels:dict) -> classes.line:
             dest = f"{np.uint16(jmpLocations[split[destIndex]]):04X}"
         else:
             dest ="0000"
+
     return classes.line(f"{index:02X}",IsBLU,P1[0],P2[0],P1[1],P2[1],dest)
