@@ -85,6 +85,7 @@ with the basics covered, here are some essential operations:
 |**FTI**|converts a float to an integer.|
 |**RAMWRITE**|a BLU operation that never jumps. first parameter is address, second parameter is data|
 |**RAMREAD**|an ALU operation which returns the contents of the address where the one and only parameter points to|
+
 there are many other opcodes-in fact, this console has 145 operations total!
 ## unsuported stuff
 if you want to get _#include common_ working, just don't. this assembler does not support libraries, _period_. the way this assembler was built would make it a challenge to implement libraries.
@@ -116,6 +117,7 @@ pyinstaller finalCompile.py --onefile
 ```
 
 that's literally all there is to building this into an exe. you could also run finalCompile.py directly, providing you have numpy installed
+
 
 
 
