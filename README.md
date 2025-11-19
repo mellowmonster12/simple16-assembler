@@ -92,7 +92,7 @@ if you want to get _#include common_ working, just don't. this assembler does no
 # importing guide
 how nice, we just learned how to take jumbles of inert thought and turn them into jumbles of inert numbers, but how do we make it do the thing?
 (keep in mind, for the screenshots, i have different window settings than the default. the menus may not look as good or as dark as this)
-step 1: go to the ROM and right click. click on "load image"
+step 1: go to the ROM and right click. click on "load image" and select your file that you want to import.
 
 ![image of the ROM with the menu thingy](step1.png)
 
@@ -117,6 +117,7 @@ pyinstaller finalCompile.py --onefile
 ```
 
 that's literally all there is to building this into an exe. you could also run finalCompile.py directly, providing you have numpy installed
+
 
 
 
