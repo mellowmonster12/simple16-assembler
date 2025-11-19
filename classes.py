@@ -36,5 +36,5 @@ class InvalidPrefix(CompilationError):
     pass
 
 class OpNumError(CompilationError):
-
     pass
+
