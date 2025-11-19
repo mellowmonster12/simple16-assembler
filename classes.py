@@ -1,4 +1,4 @@
-class operation():
+class operation(): #this class is unused, suprisingly
     name:str = ""
     isBLU:bool = False
     OperationCount:int = 2
@@ -9,7 +9,7 @@ class operation():
         self.OperationCount = OpCount
         self.number = number
 
-class line():
+class line(): #this class IS used.
     operation:str = "00"
     isBLU:bool = False
     param1:str = "0000"
@@ -26,7 +26,7 @@ class line():
         self.param2Const = Param2Const
         self.destination = destination
 
-class CompilationError(SyntaxError):
+class CompilationError(SyntaxError): #these errors are mostly unused now. during development, any errors that are not just python were raised. however, in a non-VScode terminal, you wouldn't be able to see the error. nowadays i simply print a thing and not exit until the user presses enter.
     pass
 
 class OpNotFoundError(CompilationError):
@@ -36,4 +36,5 @@ class InvalidPrefix(CompilationError):
     pass
 
 class OpNumError(CompilationError):
+
     pass
