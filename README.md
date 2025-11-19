@@ -1,5 +1,5 @@
 # Intro
-i made a console in logisim. it's an extremely simple console that doesn't even have microcode, but i'm still quite pleased with it. i don't have many demos for it, i hope to change that sometime. but if you want to make something for it, here's the guide:
+i made a console in logisim evolution. it's an extremely simple console that doesn't even have microcode, but i'm still quite pleased with it. i don't have many demos for it, i hope to change that sometime. but if you want to make something for it, here's the guide:
 # Simple16 manual
 Simple16, as the name implies, is a very simple console. and the assembler is quite simple as well-just a little python code. but it may be a bit difficult to use without guidance, especially if you're a seasoned assembly programmer confused by why _#include common_ errors out. so i made a guide.
 ## Opcodes
@@ -116,4 +116,5 @@ pyinstaller finalCompile.py --onefile
 ```
 
 that's literally all there is to building this into an exe. you could also run finalCompile.py directly, providing you have numpy installed
+
 
