@@ -61,19 +61,14 @@ def LineConvert(line:str,jmpLocations:dict,clabels:dict) -> classes.line: #conve
         paramNum = rawOps.BLUOPRaw[index][1]
     P1:list = ["0000",True]
     P2:list = P1
-    if paramNum == 0: #i think i could've made this a bit better
-        P1 = ["0000",True]
-        P2 = ["0000",True]
-    elif paramNum == 1:
+    if paramNum > 0:
         P1 = ParamConvert(split[1],clabels)
-        P2 = ["0000",True]
-    elif paramNum == 2:
-        P1 = ParamConvert(split[1],clabels)
-        P2 = ParamConvert(split[2],clabels)
     else:
-        print(f"error: the instruction {split[0]} does not have a valid amount of operands. {paramNum} operands. (excluding destination operand, if it's there) this an issue on the assembler side.")
-        input("press any key to exit...")
-        exit()
+        P1 = ["0000",True]
+    if paramNum > 1:
+        P2 = ParamConvert(split[1],clabels)
+    else:
+        P2 = ["0000",True]
     destIndex = paramNum + 1
     if not IsBLU:
         try:
