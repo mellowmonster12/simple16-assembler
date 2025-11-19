@@ -90,20 +90,27 @@ if you want to get _#include common_ working, just don't. this assembler does no
 how nice, we just learned how to take jumbles of inert thought and turn them into jumbles of inert numbers, but how do we make it do the thing?
 (keep in mind, for the screenshots, i have different window settings than the default. the menus may not look as good or as dark as this)
 step 1: go to the ROM and right click. click on "load image"
+
 ![image of the ROM with the menu thingy](step1.png)
+
 step 2: you'll be met with this screen:
+
 ![image of the menu when you click the load image button](step2.png)
+
 now set it to decode using "_v3.0 hex_" your screen shall now look like this:
+
 ![image of the menu after setting it to v3.0 hex](step2p2.png)
+
 # building the assembler
 first, make sure pyinstaller and numpy is installed (this uses numpy to ensure constants are 16-bit, and to convert float to hex)
-```
+```bash
 pip install pyinstaller
 pip install numpy
 ```
 then run
-```
+```bash
 cd path/to/assembler
 pyinstaller finalCompile.py --onefile
 ```
+
 that's literally all there is to building this into an exe. you could also run finalCompile.py directly, providing you have numpy installed
