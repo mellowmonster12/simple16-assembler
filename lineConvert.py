@@ -32,7 +32,9 @@ def ParamConvert(param:str,clabels:dict={}): #this turns the many types of param
         number = f"{np.uint16(ord(trimmed)):04X}"
     elif param[0] == "L":
         try:
-            number = f"{np.uint16(clabels[param[1:]]):04X}"
+            evalResults = paramConvert(clabels[param[1:])
+            number = evalResults[0]
+            constant = evalResults[1]
         except indexError:
             print(f"error: most likely, the c-label, {param[1:]}, does not exist.")
             input("press any key to exit...")
@@ -94,3 +96,4 @@ def LineConvert(line:str,jmpLocations:dict,clabels:dict) -> classes.line: #conve
             dest ="0000"
 
     return classes.line(f"{index:02X}",IsBLU,P1[0],P2[0],P1[1],P2[1],dest)
+
