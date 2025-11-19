@@ -1,7 +1,7 @@
 import numpy as np #numpy is used to convert unusable float strings into usable hexadecimal. and to make sure that the values specified are 16-bit.
 import classes
 import rawOps
-validDigits = [str(x) for x in range(1,9)]
+validDigits = [str(x) for x in range(0,9)]
 ALUopNames = [item[0] for item in rawOps.ALUOPRaw]
 BLUopNames = [item[0] for item in rawOps.BLUOPRaw]
 
@@ -32,10 +32,10 @@ def ParamConvert(param:str,clabels:dict={}): #this turns the many types of param
         number = f"{np.uint16(ord(trimmed)):04X}"
     elif param[0] == "L":
         try:
-            evalResults = paramConvert(clabels[param[1:])
+            evalResults = ParamConvert(clabels[param[1:]])
             number = evalResults[0]
             constant = evalResults[1]
-        except indexError:
+        except IndexError:
             print(f"error: most likely, the c-label, {param[1:]}, does not exist.")
             input("press any key to exit...")
             exit()
@@ -74,7 +74,7 @@ def LineConvert(line:str,jmpLocations:dict,clabels:dict) -> classes.line: #conve
     destIndex = paramNum + 1
     if not IsBLU:
         try:
-            if split[destIndex][0] != "R" and not split[destIndex][0] in validDigits:
+            if split[destIndex][0] != "R" and (not split[destIndex][0] in validDigits):
                 if clabels[split[destIndex]][0].upper() == "R":
                     dest = f"{np.uint8(clabels[split[destIndex]][1:]):04X}"
                 else:
