@@ -1,7 +1,7 @@
 import classes
 import lineConvert
 
-def scan(code:str):
+def scan(code:str): #this function gives each line a number. i had the idea of making it this way since before the very start of development
     lineIDs = []
     labels = {}
     clabels = {}
@@ -17,4 +17,5 @@ def scan(code:str):
             clabels = clabels | {line.split(" ")[1]:lineConvert.ParamConvert(line.split(" ")[2])[0]}
         lineIDs.append(PC)
     return {"labels":labels,"lineNumbers":lineIDs,"clabels":clabels}
+
 
