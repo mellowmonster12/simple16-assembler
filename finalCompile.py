@@ -6,7 +6,7 @@ import numpy
 if __name__ != "__main__":
     exit() #this cannot be used as a library
 
-def assembleLine(line:classes.line):
+def assembleLine(line:classes.line): #this converts the line class into a useable hexadecimal number that can be imported into logisim
     constantByte:numpy.uint8 = numpy.uint8(0)
     if line.param1Const:
         constantByte = numpy.uint8(constantByte + 1)
@@ -32,11 +32,11 @@ assembled = [assembleLine(line) for line in secondPassResults]
 i = 0
 final = []
 for line in assembled:
-    if not firstPassResults["lineNumbers"][i] == firstPassResults["lineNumbers"][i-1]:
+    if not firstPassResults["lineNumbers"][i] == firstPassResults["lineNumbers"][i-1]: #the way this was designed, i made it so first line with a line number is the only one that makes it. this enables lines like 'label jump' easier to implement
         final.append(line)
     i += 1
 output = ""
-for line in final:
+for line in final: #finally, the list gets turned into a neat text that is able to be imported to logisim
     output = output + line + "\n"
 
 print("compiled succesfully, writing to file")
@@ -46,4 +46,5 @@ with open(outFile,"wt") as f:
 
 print("done")
 input("")
+
 exit()
