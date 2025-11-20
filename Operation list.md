@@ -118,7 +118,8 @@
 
 # BLU Ops 
 |name|inputs|branches| 
-|-|-|-||UBIGR|2|yes| 
+|-|-|-|
+|UBIGR|2|yes| 
 |BIE|2|yes| 
 |UBIL|2|yes| 
 |BIGR|2|yes| 
@@ -134,3 +135,4 @@
 |PRINT|1|no| 
 |CLS|0|no| 
 |STIB|1|no| 
+
