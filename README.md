@@ -89,6 +89,9 @@ with the basics covered, here are some essential operations:
 |**RAMREAD**|an ALU operation which returns the contents of the address where the one and only parameter points to|
 
 there are many other opcodes-in fact, this console has 145 operations total!
+## I/O
+the color format for the screen is 888 RGB. this kind of color thujs needs to be stored in two registers: R28 and R29. to output to a pixel, simply write the location to put the color to R30. (location formatted as low and high byte being x and y.) the screen is 127 by 127.
+as for the controller, you read R30. each bit in R30, when read, corrospond to a button. the sticks are input as R31. the format is first 10 bits for left stick (5 bits for x, and 5 bits for y) and 6 bits for right stick (3 bits for x, 3 bits for y) to print a charactor to the built in terminal, you use _PRINT_.
 ## unsuported stuff
 if you want to get _#include common_ working, just don't. this assembler does not support libraries, _period_. the way this assembler was built would make it a challenge to implement libraries.
 # importing guide
@@ -119,3 +122,4 @@ pyinstaller finalCompile.py --onefile
 ```
 
 that's literally all there is to building this into an exe. you could also run finalCompile.py directly, providing you have numpy installed
+
