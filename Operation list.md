@@ -1,3 +1,5 @@
+below, is a list that i generated of all the operations. enjoy
+
 # ALU Ops 
 |name|inputs| 
 |-|-|
@@ -135,4 +137,5 @@
 |PRINT|1|no| 
 |CLS|0|no| 
 |STIB|1|no| 
+
 
